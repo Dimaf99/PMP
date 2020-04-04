@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.GameFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/countAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="116dp"
+            android:text="Правильных: 0"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/lay1"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"/>
+
+        <LinearLayout
+            android:id="@+id/lay2"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:orientation="horizontal"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:text="Время: 0"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:onClick="onClickButton"
+            android:text="Проверить" />
+    </LinearLayout>
+</FrameLayout>
