@@ -20,9 +20,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import ua.cn.stu.randomgallery.laba3.R;
 import ua.cn.stu.randomgallery.laba3.model.Letter;
+import ua.cn.stu.randomgallery.laba3.model.Settings;
 import ua.cn.stu.randomgallery.laba3.services.MainService;
 
 
@@ -196,9 +201,22 @@ public class GameFragment extends BaseFragment {
      */
     private String generateWord(){
         this.arrWords = getAppContract().getServices().getStrings();
-        this.min =  getAppContract().getServices().getSetting().getMin();
-        this.max = getAppContract().getServices().getSetting().getMax();
-        this.time = getAppContract().getServices().getSetting().getTime();
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<Settings> future = executor.submit(() -> {
+            return getAppContract().getServices().getSetting();
+        });
+        try {
+            Settings getSetting = future.get();
+            this.min = getSetting.getMin();
+            this.max = getSetting.getMax();
+            this.time = getSetting.getTime();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
         for ( int i=0; i<this.arrWords.length; i++){
             if ( this.arrWords[i].length() >= this.min && this.arrWords[i].length() <= this.max ){
