@@ -1,6 +1,19 @@
+
 <resources>
     <string name="app_name">laba2</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="time_left">Осталось: </string>
+    <string name="guessed">Угадал!</string>
+    <string name="correct">Правильных: </string>
+    <string name="time_end">Время вышло!</string>
+    <string name="count_right">Всего правильных ответов</string>
+    <string name="btn_close">Закрыть</string>
+
+    <string name="start">Начать игру</string>
+    <string name="settings">Настройки</string>
+
+    <string name="btn_sett_save">Сохранить</string>
+    <string name="lbl_sett_time">Время</string>
+    <string name="lbl_sett_max">Количество букв(максимальное)</string>
+    <string name="lbl_sett_min">Количество букв(минимальное)</string>
 </resources>

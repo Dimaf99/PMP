@@ -29,13 +29,13 @@
         android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Начать игру" />
+        android:text="@string/start" />
 
     <Button
         android:id="@+id/btn_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Настройки" />
+        android:text="@string/settings" />
 
     <TextView
         android:id="@+id/textView6"

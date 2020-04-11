@@ -1,0 +1,19 @@
+
+<resources>
+    <string name="app_name">laba2</string>
+
+    <string name="time_left">Time left</string>
+    <string name="guessed">Guessed it</string>
+    <string name="correct">Correct answers</string>
+    <string name="time_end">Time is over!</string>
+    <string name="count_right">Total correct answers</string>
+    <string name="btn_close">Close</string>
+
+    <string name="start">Start game</string>
+    <string name="settings">Settings</string>
+
+    <string name="btn_sett_save">Save</string>
+    <string name="lbl_sett_time">Time</string>
+    <string name="lbl_sett_max">Count letter(max)</string>
+    <string name="lbl_sett_min">Count letter(min)</string>
+</resources>

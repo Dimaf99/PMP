@@ -73,7 +73,7 @@ public class GameFragment extends BaseFragment {
         this.tmr = new CountDownTimer(this.time * 60000, 1000) {
             public void onTick(long millisUntilFinished) {
                 time = (int)millisUntilFinished;
-                labelTimer.setText("Осталось: " + millisUntilFinished / 1000);
+                labelTimer.setText( getResources().getString(R.string.time_left) + millisUntilFinished / 1000);
             }
 
             public void onFinish() {
@@ -94,10 +94,10 @@ public class GameFragment extends BaseFragment {
                 System.out.println( rightAnswer );
 
                 if ( res.equals(rightAnswer) ){
-                    Toast.makeText( getActivity(), "Угадал!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( getActivity(), getResources().getString(R.string.guessed), Toast.LENGTH_SHORT).show();
                     countRight++;
                     TextView label = view.findViewById(R.id.countAnswer);
-                    label.setText("Правильных: " + countRight );
+                    label.setText(getResources().getString(R.string.correct) + countRight );
                     newWord();
                 }
             }
@@ -214,10 +214,10 @@ public class GameFragment extends BaseFragment {
 
     private void showDlg() {
         AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
-        adb.setTitle("Время вышло!");
-        adb.setMessage("Всего правильных ответов:" + this.countRight );
+        adb.setTitle(getResources().getString(R.string.time_end));
+        adb.setMessage( getResources().getString(R.string.count_right) + this.countRight );
         adb.setIcon(android.R.drawable.ic_dialog_info);
-        adb.setPositiveButton("Закрыть", new DialogInterface.OnClickListener() {
+        adb.setPositiveButton(getResources().getString(R.string.btn_close), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
