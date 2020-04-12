@@ -1,9 +1,12 @@
 package ua.cn.stu.randomgallery.laba3.model;
 
+import java.util.Set;
+
 public class Settings {
     private int min;
     private int max;
     private int time;
+    private Set<String> arrWords;
 
     public int getMin() {
         return min;
@@ -28,4 +31,8 @@ public class Settings {
     public void setTime(int time) {
         this.time = time;
     }
+
+    public void setWords( Set<String> words ){ this.arrWords = words; }
+
+    public Set<String> getWords(){ return this.arrWords; }
 }

@@ -9,6 +9,10 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import ua.cn.stu.randomgallery.laba3.model.Settings;
 
 public class MainService extends Service {
@@ -43,6 +47,12 @@ public class MainService extends Service {
         ed.putString("min", String.valueOf(4));
         ed.putString("max", String.valueOf(9));
         ed.putString("time", String.valueOf(5));
+
+        Set<String> arrayList = new HashSet<String>();
+        for ( int i=0; i<this.arrWords.length; i++) {
+            arrayList.add(this.arrWords[i]);
+        }
+        ed.putStringSet("words", arrayList );
         ed.commit();
 
         Log.d(LOG_TAG, "MyService started");
@@ -72,6 +82,7 @@ public class MainService extends Service {
         stngs.setMin( Integer.parseInt( sPref.getString("min", "") ));
         stngs.setMax( Integer.parseInt(sPref.getString("max", "")) );
         stngs.setTime( Integer.parseInt(sPref.getString("time", "")) );
+        stngs.setWords( sPref.getStringSet("words", new HashSet<String>()));
 
         return stngs;
     }
@@ -82,12 +93,6 @@ public class MainService extends Service {
         ed.putString("max", String.valueOf(  setting.getMax() ));
         ed.putString("time", String.valueOf( setting.getTime() ));
         ed.commit();
-    }
-
-
-
-    public String [] getStrings(){
-        return arrWords;
     }
 
     public class MainServiceBinder extends Binder {
