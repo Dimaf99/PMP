@@ -8,6 +8,8 @@
     <string name="time_end">Time is over!</string>
     <string name="count_right">Total correct answers</string>
     <string name="btn_close">Close</string>
+    <string name="btn_check">Check</string>
+    <string name="lbl_wait">Loading...</string>
 
     <string name="start">Start game</string>
     <string name="settings">Settings</string>

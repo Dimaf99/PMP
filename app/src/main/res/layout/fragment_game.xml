@@ -16,7 +16,8 @@
             android:layout_height="116dp"
             android:text="Правильных: 0"
             android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="invisible" />
 
         <LinearLayout
             android:id="@+id/lay1"
@@ -38,13 +39,22 @@
             android:layout_height="47dp"
             android:text="Время: 0"
             android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:onClick="onClickButton"
-            android:text="Проверить" />
+            android:text="@string/btn_check"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/lblwait"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/lbl_wait" />
     </LinearLayout>
 </FrameLayout>

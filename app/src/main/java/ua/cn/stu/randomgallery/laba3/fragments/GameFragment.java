@@ -20,23 +20,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutionException;;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
-import ua.cn.stu.randomgallery.laba3.MainActivity;
 import ua.cn.stu.randomgallery.laba3.R;
 import ua.cn.stu.randomgallery.laba3.model.Letter;
 import ua.cn.stu.randomgallery.laba3.model.Settings;
-import ua.cn.stu.randomgallery.laba3.services.MainService;
+
 
 
 
@@ -109,6 +104,8 @@ public class GameFragment extends BaseFragment {
             this.view = view;
         }
 
+
+
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void run() {
@@ -133,47 +130,56 @@ public class GameFragment extends BaseFragment {
                 e.printStackTrace();
             }
 
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mainGameFragment();
+                }
+            });
+        }
 
-            //newWord();
+        private void mainGameFragment(){
+            TextView lblwait = (TextView) view.findViewById(R.id.lblwait);
+            lblwait.setVisibility(View.INVISIBLE);
+
+            newWord();
 
             labelTimer = (TextView) view.findViewById(R.id.time);
-            labelTimer.setText("fffff");
+            labelTimer.setVisibility(View.VISIBLE);
+            tmr = new CountDownTimer(5 * 60000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    time = (int)millisUntilFinished;
+                    labelTimer.setText( getResources().getString(R.string.time_left) + " " + millisUntilFinished / 1000);
+                }
 
-            LinearLayout lay1 = (LinearLayout) view.findViewById(R.id.lay1);
-            lay1.removeAllViews();
+                public void onFinish() {
+                    showDlg();
+                }
+            }.start();
 
-//            tmr = new CountDownTimer(5 * 60000, 1000) {
-//                public void onTick(long millisUntilFinished) {
-//                    time = (int)millisUntilFinished;
-//                    labelTimer.setText( getResources().getString(R.string.time_left) + millisUntilFinished / 1000);
-//                }
-//
-//                public void onFinish() {
-//                    showDlg();
-//                }
-//            }.start();
-//
-//            Button btn = (Button) view.findViewById(R.id.button );
-//            btn.setOnClickListener( new View.OnClickListener(){
-//                @Override
-//                public void onClick(View v) {
-//                    String res = "";
-//                    for ( Letter lett : wordsAnswer ){
-//                        res += lett.getLetter();
-//                    }
-//
-//                    System.out.println(res);
-//                    System.out.println( rightAnswer );
-//
-//                    if ( res.equals(rightAnswer) ){
-//                        Toast.makeText( getActivity(), getResources().getString(R.string.guessed), Toast.LENGTH_SHORT).show();
-//                        countRight++;
-//                        TextView label = view.findViewById(R.id.countAnswer);
-//                        label.setText(getResources().getString(R.string.correct) + countRight );
-//                        newWord();
-//                    }
-//                }
-//            });
+            Button btn = (Button) view.findViewById(R.id.button );
+            btn.setVisibility(View.VISIBLE);
+            btn.setOnClickListener( new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    String res = "";
+                    for ( Letter lett : wordsAnswer ){
+                        res += lett.getLetter();
+                    }
+
+                    System.out.println(res);
+                    System.out.println( rightAnswer );
+
+                    if ( res.equals(rightAnswer) ){
+                        Toast.makeText( getActivity(), getResources().getString(R.string.guessed), Toast.LENGTH_SHORT).show();
+                        countRight++;
+                        TextView label = view.findViewById(R.id.countAnswer);
+                        label.setVisibility(View.VISIBLE);
+                        label.setText(getResources().getString(R.string.correct) + " " + countRight );
+                        newWord();
+                    }
+                }
+            });
         }
 
         private CountDownTimer getTimer(){
